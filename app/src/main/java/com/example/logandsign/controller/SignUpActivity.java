@@ -1,8 +1,10 @@
-package com.example.logandsign;
+package com.example.logandsign.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.logandsign.R;
 
 public class SignUpActivity extends AppCompatActivity {
 

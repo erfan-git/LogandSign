@@ -12,17 +12,23 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/editText_userName"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
-            android:hint="Username">
+            android:hint="Username"
+            android:inputType="text"
+            android:textStyle="bold">
 
         </EditText>
 
         <EditText
+            android:id="@+id/editText_passWord"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Password">
+            android:hint="Password"
+            android:inputType="number"
+            android:textStyle="bold">
 
         </EditText>
 

@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/editText_userName1"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
             android:hint="Username">
@@ -20,10 +21,12 @@
         </EditText>
 
         <EditText
+            android:id="@+id/editText_passWord1"
             android:layout_width="283dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Password">
+            android:hint="Password"
+            android:inputType="number">
 
         </EditText>
 
