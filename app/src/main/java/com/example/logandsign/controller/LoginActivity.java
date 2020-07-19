@@ -1,17 +1,15 @@
 package com.example.logandsign.controller;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.PersistableBundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.example.logandsign.R;
@@ -62,9 +60,11 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
 
-                if (mUserName != null && mPassWord != null) {
-                    intent.putExtra(EXTRA_KAY, mSign);
+                if (mUserName == null && mPassWord == null) {
+                    mSign.setUserName("");
+                    mSign.setPassWordd("");
                 }
+                intent.putExtra(EXTRA_KAY, mSign);
                 startActivityForResult(intent, REQUEST_CODE_SIGNUP_ACTIVITY);
             }
         });
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
 
     private void findAllViews() {
         mButtomLogin = findViewById(R.id.button_login);
-        mButtomSignup = findViewById(R.id.button_signUp);
+        mButtomSignup = findViewById(R.id.button_signUp1);
         mEditTextUserName = findViewById(R.id.editText_userName);
         mEditTextPassWord = findViewById(R.id.editText_passWord);
     }
@@ -120,6 +120,11 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
         if (mUserName != null && mPassWord != null) {
             outState.putSerializable(KAY_BUNDEL_EDITTEXT, mSign);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
     }
 }
