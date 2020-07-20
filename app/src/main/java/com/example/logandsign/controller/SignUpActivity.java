@@ -1,5 +1,6 @@
 package com.example.logandsign.controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.logandsign.R;
 import com.example.logandsign.model.Sign;
@@ -17,6 +19,7 @@ import static com.example.logandsign.controller.LoginActivity.EXTRA_KAY;
 
 public class SignUpActivity extends AppCompatActivity {
     public static final String EXTRA_KAY_USER_NAME_1 = "com.example.logandsign.controller.userName";
+    public static final String KAY_BUNDEL_EDITTEXT_1 = "kay bundel editText1" ;
     private Button mButtomSignup1;
     private EditText mEditTextUserName1;
     private EditText mEditTextPassWord1;
@@ -46,11 +49,15 @@ public class SignUpActivity extends AppCompatActivity {
         mButtomSignup1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra(EXTRA_KAY_USER_NAME_1,mSign);
-                setResult(RESULT_OK,intent);
+                if (mEditTextUserName1.getText().toString() == null || mEditTextPassWord1.getText().toString() == null){
+                    Toast.makeText(SignUpActivity.this,"your username or password is empty !!!",Toast.LENGTH_LONG).show();
+                }else {
+                    Intent intent = new Intent();
+                    intent.putExtra(EXTRA_KAY_USER_NAME_1, mSign);
+                    setResult(RESULT_OK, intent);
 
-                finish();
+                    finish();
+                }
             }
         });
 
@@ -95,5 +102,13 @@ public class SignUpActivity extends AppCompatActivity {
         mButtomSignup1 = findViewById(R.id.button_signUp1);
         mEditTextUserName1 = findViewById(R.id.editText_userName1);
         mEditTextPassWord1 = findViewById(R.id.editText_passWord1);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mUserName1 != null && mPassWord1 != null) {
+            outState.putSerializable(KAY_BUNDEL_EDITTEXT_1, mSign);
+        }
     }
 }

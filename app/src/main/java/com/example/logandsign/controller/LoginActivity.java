@@ -11,11 +11,15 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.logandsign.R;
 import com.example.logandsign.model.Sign;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.Serializable;
+
+import static com.example.logandsign.controller.SignUpActivity.KAY_BUNDEL_EDITTEXT_1;
 
 public class LoginActivity extends AppCompatActivity implements Serializable {
 
@@ -29,6 +33,8 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
     private Sign mSign;
     private String mUserName;
     private String mPassWord;
+    private String mUserName2;
+    private String mPassWord2;
 
 
     @Override
@@ -51,6 +57,12 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
         mButtomLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mUserName2 == mEditTextUserName.getText().toString() || mPassWord2 == mEditTextPassWord.getText().toString() ){
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main_layout), "** CONGRAGRATULATIONS ** ", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }else{
+                    Toast.makeText(LoginActivity.this,"your username or password is false !!!",Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -125,6 +137,12 @@ public class LoginActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        if (requestCode == REQUEST_CODE_SIGNUP_ACTIVITY && data != null) {
+            mSign = (Sign) data.getSerializableExtra(KAY_BUNDEL_EDITTEXT_1);
+            mUserName2 = mSign.getUserName();
+            mEditTextUserName.setText(mUserName2);
+            mPassWord2 = mSign.getPassWordd();
+            mEditTextPassWord.setText(mPassWord2);
+        }
     }
 }
